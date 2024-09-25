@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestjs-microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nestjs-microservice
+  template:
+    metadata:
+      labels:
+        app: nestjs-microservice
+    spec:
+      containers:
+        - name: nestjs-microservice
+          image: your-username/nestjs-microservice:latest # Update with your image
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: 'production'
+            - name: DATABASE_URL
+              value: 'postgresql://postgres:admin@db:5432/crud-cus-prod-db' # Update with your DB credentials
