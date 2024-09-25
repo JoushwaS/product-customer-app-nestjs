@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Inject } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { CreateCustomerDto, CreateProductDto } from './dto';
+import { CreateCustomerDto } from './customer/dto/create-customer.dto';
+import { CreateProductDto } from './product/dto/create-product.dto';
 
 @Controller()
 export class AppController {

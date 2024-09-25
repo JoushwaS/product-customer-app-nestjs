@@ -2,18 +2,18 @@ import { IsOptional, IsString } from 'class-validator';
 import { CreateProductDto } from './create-product.dto';
 
 export class UpdateProductDto extends CreateProductDto {
-  @IsString()
-  productName?: string;
+  @IsOptional()
+  productName: string;
 
   @IsOptional()
-  productPrice?: number;
+  productPrice: number;
 
   @IsOptional()
-  productStock?: number;
+  productStock: number;
 
   @IsOptional()
-  isActive?: boolean;
+  isActive: boolean;
 
   @IsOptional()
-  category?: string;
+  category: string;
 }

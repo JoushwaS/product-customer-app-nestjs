@@ -13,26 +13,28 @@ model Customer {
   email       String   @unique
   cardNumber  String
   phoneNumber String
-  purchases   Purchase[]
+  orders      Order[]  // Updated relation to Order
 }
 
 model Product {
-  id          Int      @id @default(autoincrement())
-  name        String
-  price       Float
-  stock       Int
-  active      Boolean
-  category    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  boughtCount Int      @default(0)
-  purchases   Purchase[]
+  id            Int      @id @default(autoincrement())
+  name          String
+  price         Float
+  stock         Int
+  active        Boolean
+  category      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  purchaseCount Int      @default(0) // To track the total purchases
+  orders        Order[]  // Updated relation to Order
 }
 
-model Purchase {
-  id         Int      @id @default(autoincrement())
-  customerId Int
-  productId  Int
-  Customer   Customer @relation(fields: [customerId], references: [id])
-  Product    Product  @relation(fields: [productId], references: [id])
+model Order {
+  id          Int      @id @default(autoincrement())
+  customerId  Int
+  productId   Int
+  Customer    Customer @relation(fields: [customerId], references: [id])
+  Product     Product  @relation(fields: [productId], references: [id])
+  createdAt   DateTime @default(now())
+  productCategory String // Assuming you need this for grouped statistics in your service
 }
